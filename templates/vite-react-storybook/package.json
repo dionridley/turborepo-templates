@@ -1,0 +1,22 @@
+{
+  "name": "vite-react-storybook-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "storybook": "turbo storybook",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "turbo": "^2.5.4"
+  },
+  "packageManager": "pnpm@10.12.4",
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
