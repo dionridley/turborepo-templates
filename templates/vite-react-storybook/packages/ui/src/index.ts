@@ -1,10 +1,9 @@
 // Re-export components explicitly for better tree-shaking
-// export { Button } from './components/Button';
-// export { Card } from './components/Card';
-// export { Input } from './components/Input';
+export { Button, type ButtonProps } from './components/Button';
+export { Card, type CardProps } from './components/Card';
+export { Input, type InputProps } from './components/Input';
 
 // Re-export hooks explicitly
 // export { useTheme } from './hooks/useTheme';
 
-// Note: Uncomment and add exports as components are created
-// Avoid using wildcard exports (export *) as they prevent tree-shaking
+// Styles are exported via package.json exports

@@ -1,7 +1,4 @@
-// Individual component exports - add as components are created
-// export { Button } from './Button';
-// export { Card } from './Card';
-// export { Input } from './Input';
-
-// Note: This file is intentionally left with commented exports
-// to demonstrate the pattern without using wildcard exports
+// Individual component exports for better tree-shaking
+export { Button, type ButtonProps } from './Button';
+export { Card, type CardProps } from './Card';
+export { Input, type InputProps } from './Input';
