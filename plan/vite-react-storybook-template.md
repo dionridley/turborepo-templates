@@ -390,11 +390,88 @@ export default defineConfig({
 
 7. **pnpm 10.12**: Performance improvements and better monorepo support
 
-## Next Steps
+## Implementation Progress Checklist
 
-1. Review and approve this plan
-2. Begin implementation following the phases
-3. Create example components to demonstrate patterns
-4. Add comprehensive documentation
-5. Include GitHub Actions for CI/CD
-6. Add testing setup (Vitest + React Testing Library)
+### Phase 1: Repository Setup
+- [ ] Create the monorepo structure
+- [ ] Initialize pnpm workspaces (v10.12.4)
+- [ ] Set up TurboRepo configuration (v2.5.4)
+- [ ] Configure base package.json files
+- [ ] Set Node.js engine requirement to >=20.19.0
+
+### Phase 2: Shared Packages
+- [ ] Create typescript-config package (targeting ES2022, module: ESNext)
+- [ ] Create eslint-config package
+- [ ] Create base UI package structure
+- [ ] Set up shared Tailwind CSS v4 styles
+
+### Phase 3: UI Component Library
+- [ ] Set up build process for UI package
+- [ ] Create initial components (Button, Card, Input)
+- [ ] Create shared Tailwind CSS imports (@import "tailwindcss")
+- [ ] Add TypeScript definitions
+- [ ] Set up exports
+
+### Phase 4: Vite React App
+- [ ] Initialize Vite 7 project with React 19.1
+- [ ] Configure TypeScript with shared config
+- [ ] Set up Tailwind CSS with @tailwindcss/vite plugin
+- [ ] Import and use UI components
+- [ ] Add example pages
+- [ ] Configure React 19 TypeScript types
+
+### Phase 5: Storybook Integration
+- [ ] Initialize Storybook 9.0
+- [ ] Configure for monorepo structure
+- [ ] Add stories for UI components
+- [ ] Set up @storybook/addon-themes for Tailwind
+- [ ] Configure build process
+- [ ] Ensure Vite integration with @storybook/react-vite
+
+### Phase 6: Developer Experience
+- [ ] Add hot reload across packages (Vite 7 HMR)
+- [ ] Configure TypeScript paths and Node.js 20+ features
+- [ ] Set up linting and formatting
+- [ ] Add pre-commit hooks
+- [ ] Create comprehensive documentation
+- [ ] Verify Node.js 20.19+ compatibility
+
+### Phase 7: Version-Specific Optimizations
+- [ ] Configure Vite 7 for optimal performance with React 19
+- [ ] Set up React 19 Server Components support (if needed)
+- [ ] Implement Tailwind CSS v4 theme customization using CSS variables
+- [ ] Configure Storybook 9 with proper Vite integration
+- [ ] Add migration notes from older template versions
+
+### Additional Tasks
+- [ ] Create example components to demonstrate patterns
+- [ ] Include GitHub Actions for CI/CD
+- [ ] Add testing setup (Vitest + React Testing Library)
+- [ ] Write comprehensive README for the template
+- [ ] Test the template with `create-turbo` command
+
+## Progress Notes
+
+**Last Updated:** July 1, 2025
+**Status:** Planning phase complete, ready to begin implementation
+**Current Phase:** None started yet
+
+### Important Instructions for Claude/AI Assistant:
+1. **Always update checkboxes** - When completing a task, change `- [ ]` to `- [x]`
+2. **Update the Last Updated date** - Change this to the current date when making progress
+3. **Update Current Phase** - Indicate which phase is actively being worked on
+4. **Add implementation notes** - Document any important decisions, issues, or deviations from the plan
+5. **File locations** - The template being created will be in `/templates/vite-react-storybook/`
+6. **Test commands** - After each phase, test with appropriate commands (pnpm install, pnpm dev, etc.)
+7. **Version conflicts** - If any specified versions have conflicts, document the resolution
+
+### Implementation Guidelines:
+- Start with Phase 1 and work sequentially through the phases
+- Each phase should be fully completed and tested before moving to the next
+- If a blocker is encountered, document it and either resolve or note for user attention
+- Keep the CLAUDE.md principles in mind (minimal files, no unnecessary documentation)
+- The template should be immediately usable with `create-turbo`
+
+---
+
+*As tasks are completed, check them off and add any relevant notes or issues encountered below this line.*
