@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# UI Component Library
+
+Welcome to the Storybook documentation for our shared UI component library.
+
+## Overview
+
+This component library is built with:
+- **React 19.1** - Latest React features
+- **TypeScript** - Full type safety
+- **Tailwind CSS 4** - Utility-first styling
+- **Vite** - Fast development and building
+
+## Getting Started
+
+Components can be imported from `@repo/ui`:
+
+```tsx
+import { Button, Card, Input } from '@repo/ui';
+```
+
+Don't forget to import the styles in your app:
+
+```css
+@import "@repo/ui/styles/tailwind.css";
+```
+
+## Available Components
+
+- **Button** - Primary, secondary, and outline variants in multiple sizes
+- **Card** - Container component with configurable padding
+- **Input** - Form input with label, error, and helper text support
+
+## Design Tokens
+
+The component library uses Tailwind CSS 4's new theming system with CSS custom properties:
+
+- `--color-primary-*` - Primary color scale
+- `--font-family-sans` - System font stack
+
+## Contributing
+
+To add new components:
+1. Create the component in `packages/ui/src/components`
+2. Export it from the main index file
+3. Add stories in this Storybook
+4. Ensure full TypeScript support

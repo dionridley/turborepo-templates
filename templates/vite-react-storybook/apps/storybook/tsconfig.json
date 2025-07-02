@@ -1,0 +1,11 @@
+{
+  "extends": "../../packages/typescript-config/react.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "stories/**/*",
+    ".storybook/**/*"
+  ],
+  "exclude": ["node_modules"]
+}
