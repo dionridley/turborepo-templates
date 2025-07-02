@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* Import UI library styles */
+@import "@repo/ui/styles/tailwind.css";
