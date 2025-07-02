@@ -12,6 +12,11 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
-    "incremental": true
+    "incremental": true,
+    "composite": true,
+    "noEmit": false,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": false
   }
 }
