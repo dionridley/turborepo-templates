@@ -448,7 +448,7 @@ export default defineConfig({
 - [ ] Include GitHub Actions for CI/CD
 - [ ] Add testing setup (Vitest + React Testing Library)
 - [ ] Write comprehensive README for the template
-- [ ] Test the template with `create-turbo` command
+- [ ] Test the template with `degit` command
 
 ## Progress Notes
 
@@ -470,7 +470,7 @@ export default defineConfig({
 - Each phase should be fully completed and tested before moving to the next
 - If a blocker is encountered, document it and either resolve or note for user attention
 - Keep the CLAUDE.md principles in mind (minimal files, no unnecessary documentation)
-- The template should be immediately usable with `create-turbo`
+- The template should be immediately usable with `degit`
 
 ---
 

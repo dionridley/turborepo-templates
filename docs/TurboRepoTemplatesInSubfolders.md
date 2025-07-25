@@ -2,27 +2,25 @@
 
 TurboRepo's template system supports storing multiple templates in subfolders of a single repository, similar to Vercel's examples structure. While this approach works technically through the `--example-path` parameter, the ecosystem favors separate repositories for each template due to certain architectural constraints.
 
-## How GitHub-based templates work in TurboRepo
+## How GitHub-based templates work
 
-TurboRepo's `create-turbo` CLI leverages GitHub's repository download APIs to fetch and process templates. When you provide a GitHub URL, the system:
+While TurboRepo's `create-turbo` CLI uses GitHub's repository download APIs, a more efficient approach is using `degit` - a scaffolding tool that downloads only the specific directory you need:
 
-1. **Parses the URL** to extract repository details, branch references, and subdirectory paths
-2. **Downloads via GitHub's tarball API** using endpoints like `https://api.github.com/repos/OWNER/REPO/tarball/REF`
-3. **Extracts and filters content** based on any specified subdirectory path
-4. **Processes the template** by installing dependencies and applying any necessary transformations
+1. **Degit advantages** - Downloads only the specified subdirectory, not the entire repository
+2. **No API rate limits** - Works without GitHub API authentication in most cases
+3. **Faster downloads** - Transfers less data by targeting specific paths
+4. **Simpler syntax** - More intuitive command structure for subfolder access
 
-The key mechanism enabling subfolder templates is the `--example-path` parameter, which allows the CLI to extract only a specific directory from the downloaded repository archive.
+## Subfolder templates with degit
 
-## Subfolder templates are supported with limitations
-
-**Yes, custom TurboRepo templates can be stored in subfolders** of a single repository. The `create-turbo` CLI explicitly supports this through two methods:
+**Yes, custom TurboRepo templates can be stored in subfolders** of a single repository. Using `degit` provides a cleaner approach:
 
 ```bash
-# Method 1: Direct GitHub URL with path
-npx create-turbo@latest my-app --example https://github.com/username/repo/tree/main/templates/nextjs
+# Simple degit syntax for subfolder templates
+npx degit username/repo/templates/nextjs my-app
 
-# Method 2: Using --example-path parameter
-npx create-turbo@latest my-app --example https://github.com/username/repo --example-path templates/nextjs
+# Alternative: specify branch if not main/master
+npx degit username/repo/templates/nextjs#develop my-app
 ```
 
 However, there's a critical limitation: **TurboRepo does not support nested packages** within the templates themselves. Structures like `apps/**` or `packages/**` with deeply nested workspaces will fail. Each package must exist at the same depth level within the workspace structure.
@@ -62,34 +60,31 @@ turborepo-templates/
 
 The separate repository approach remains most popular because it provides better version control, easier maintenance, and clearer ownership boundaries for each template.
 
-## Referencing subfolder templates with create-turbo
+## Referencing subfolder templates with degit
 
-The `create-turbo` CLI provides specific parameters for accessing templates in subdirectories:
+Using `degit` provides a more straightforward approach for accessing templates in subdirectories:
 
 ### Standard usage for subfolder templates
 ```bash
-# Using --example-path for clear subdirectory specification
-npx create-turbo@latest my-project \
-  --example https://github.com/myorg/templates \
-  --example-path templates/nextjs-starter \
-  --package-manager pnpm
+# Simple path specification
+npx degit myorg/templates/templates/nextjs-starter my-project
+cd my-project
+pnpm install
 
-# For branches with special characters (e.g., bug/fix-1)
-npx create-turbo@latest my-project \
-  --example https://github.com/myorg/templates \
-  --example-path feature/new-template/templates/react
+# Specify branch explicitly
+npx degit myorg/templates/templates/react#feature/new-template my-project
 ```
 
 ### Working examples from the community
 ```bash
-# Accessing Vercel's examples
-npx create-turbo@latest --example https://github.com/vercel/turborepo --example-path examples/with-tailwind
+# Accessing Vercel's examples (if they supported degit)
+npx degit vercel/turborepo/examples/with-tailwind my-app
 
-# Using turbo generate for workspace templates
-turbo gen workspace --copy https://github.com/vercel/turborepo/tree/main/examples/design-system/packages/ui
+# For this repository
+npx degit dionridley/turborepo-templates/templates/vite-react-storybook my-app
 ```
 
-The `--example-path` parameter is particularly useful when branch names contain slashes or when you need to specify exact paths within complex repository structures.
+Degit handles complex paths naturally and doesn't require special parameters for subdirectories.
 
 ## Repository structure best practices
 
@@ -143,11 +138,11 @@ Several architectural constraints affect how you structure template repositories
 - Large template collections may become difficult to maintain in a single repository
 - Version management is more complex with multiple templates in one repo
 - CI/CD pipelines need to validate each template independently
-- Documentation must be comprehensive since `create-turbo` syntax for subfolders isn't extensively documented
+- Documentation should include clear `degit` examples for each template
 
 **Performance factors:**
-- Downloading entire repositories for single templates can be inefficient
-- GitHub API rate limits may affect large-scale template usage
+- Degit downloads only the requested directory, not the entire repository
+- No GitHub API rate limits with degit (uses git directly)
 - Cache directories (`.turbo`) should be excluded from templates
 
 Despite these limitations, storing multiple TurboRepo templates in a single repository with subfolders is both possible and practical for organizations wanting centralized template management. The key is understanding the constraints and designing your repository structure to work within them while providing clear documentation for template consumers.
