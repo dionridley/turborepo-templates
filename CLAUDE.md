@@ -43,26 +43,57 @@ pnpm lint
 pnpm type-check
 ```
 
-## Architecture and Structure
+## Directory Structure
 
-### Expected Repository Layout
 ```
 turborepo-templates/
-├── README.md                    # Template catalog and usage instructions
-├── CONTRIBUTING.md              # Guidelines for adding new templates
+├── _claude/             # Claude Code workspace
+│   ├── plans/           # Project plans and strategies
+│   │   ├── draft/       # Plans being developed or refined
+│   │   ├── in_progress/ # Plans currently being implemented
+│   │   └── completed/   # Implemented or finalized plans
+│   └── docs/            # Technical documentation
+├── _resources/          # User-provided documentation and research
+├── docs/                # Public technical documentation
+│   └── TurboRepoTemplatesInSubfolders.md
+├── templates/           # TurboRepo template collection
+│   └── vite-react-storybook/  # Vite + React + Storybook template
+├── README.md            # Template catalog and usage instructions
+├── CONTRIBUTING.md      # Guidelines for adding new templates (planned)
 ├── .github/
-│   └── workflows/              # CI/CD for template validation
-├── docs/
-│   └── TurboRepoTemplatesInSubfolders.md  # Technical documentation
-├── templates/
-│   ├── basic/                  # Minimal TurboRepo setup
-│   ├── nextjs-tailwind/        # Next.js with Tailwind CSS
-│   ├── design-system/          # Component library template
-│   └── [other-templates]/      # Additional templates
-└── scripts/
+│   └── workflows/       # CI/CD for template validation (planned)
+└── scripts/             # Utility scripts (planned)
     ├── validate-templates.js   # Validate all templates build correctly
     └── update-dependencies.js  # Bulk update dependencies across templates
 ```
+
+## Folder Purposes
+
+### `/_claude`
+Claude Code's workspace for maintaining project continuity across sessions:
+- **`/plans`**: Strategic documents, architectural decisions, and implementation plans
+  - **`/draft`**: Plans being developed or refined (not yet approved/finalized)
+  - **`/in_progress`**: Plans currently being actively implemented
+  - **`/completed`**: Plans that have been fully implemented or finalized
+- **`/docs`**: Technical documentation, API specs, and development notes
+
+### `/_resources`
+User-provided materials that inform the development process:
+- External documentation
+- Research notes
+- Design specifications
+- Business requirements
+
+### `/docs`
+Public technical documentation for the repository:
+- Architecture guides
+- Technical specifications
+- Best practices documentation
+
+### `/templates`
+Collection of TurboRepo monorepo templates:
+- **`/vite-react-storybook`**: Modern stack with Vite 7, React 19, TypeScript 5.8, Storybook 9, and Tailwind CSS 4
+- Additional templates will be added here
 
 ### Template Requirements
 Each template should:
@@ -95,10 +126,72 @@ cd test-app
 pnpm install
 ```
 
+## Working Mode Guidelines
+
+### Planning vs. Implementation Mode
+
+**DEFAULT MODE: PLANNING**
+- All conversations start in planning mode
+- In planning mode: discuss, analyze, suggest, and propose solutions
+- DO NOT make any changes to files or execute commands without explicit approval
+- Wait for clear implementation instructions like:
+  - "Go ahead and implement this"
+  - "Please make these changes"
+  - "Yes, let's do that"
+
+### Transitioning to Implementation
+- Only switch to implementation mode when the user explicitly requests it
+- Implementation requests should be clear and specific
+- If uncertain whether to implement, ask for clarification
+
+### Example Workflow
+1. User asks: "How should we handle X?"
+2. Claude: Analyzes options, suggests approaches, explains pros/cons
+3. User: "That sounds good, please implement option 2"
+4. Claude: NOW begins making actual changes
+
+## Session Continuity Guidelines
+
+When starting a new Claude Code session:
+
+1. **Check CLAUDE.md** (this file) for the current project structure and strategy
+2. **Review plan stages**:
+   - Check `/_claude/plans/in_progress/` for active work
+   - Review `/_claude/plans/draft/` for upcoming features
+   - Reference `/_claude/plans/completed/` for implemented decisions
+3. **Check implementation status** in `/templates` to see what's been built
+
+## Plan Management Workflow
+
+1. **Draft Stage**: New plans start in `/_claude/plans/draft/`
+   - Plans being written or refined
+   - Not yet approved or ready for implementation
+   
+2. **In Progress Stage**: Move to `/_claude/plans/in_progress/` when implementation begins
+   - Actively being worked on
+   - Reference during development
+   
+3. **Completed Stage**: Move to `/_claude/plans/completed/` when fully implemented
+   - Archive of implemented features
+   - Historical reference for decisions made
+
+## Important Files
+
+- This file (`CLAUDE.md`): Project organization reference
+- `/README.md`: Public-facing template catalog
+- `/_claude/plans/completed/vite-react-storybook-template.md`: Completed implementation plan for the first template
+
+## Development Principles
+
+1. **Incremental Progress**: Build features incrementally with working code at each step
+2. **Documentation First**: Update plans and docs before implementing major features
+3. **Template Independence**: Each template is self-contained with no cross-dependencies
+4. **User-Centric Design**: Keep templates minimal but functional - users will extend them
+
 ## Important Notes
 
 - This repository hosts templates only - no shared code or dependencies
 - Each template is independent and self-contained
 - Follow TurboRepo best practices for monorepo structure
 - Ensure templates work with multiple package managers (pnpm, npm, yarn)
-- Keep templates minimal but functional - users will extend them
+- Use `degit` for efficient template downloading without API rate limits
