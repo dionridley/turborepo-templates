@@ -4,19 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a TurboRepo templates repository designed to host multiple monorepo templates that can be accessed via the `create-turbo` CLI. The repository follows the pattern of storing templates in subdirectories, similar to Vercel's examples repository.
+This is a TurboRepo templates repository designed to host multiple monorepo templates that can be accessed via `degit`. The repository follows the pattern of storing templates in subdirectories, similar to Vercel's examples repository.
 
 ## Key Concepts
 
 ### Template Structure
 - Templates are stored in the `/templates/` directory as flat subdirectories
 - Each template is a complete TurboRepo monorepo with its own `package.json`, `turbo.json`, `apps/`, and `packages/` directories
-- Templates are accessed via: `npx create-turbo@latest my-app --example https://github.com/dionridley/turborepo-templates --example-path templates/[template-name]`
+- Templates are accessed via: `npx degit dionridley/turborepo-templates/templates/[template-name] my-app`
 
 ### Important Limitations
 - Nested packages are NOT supported - all packages must be at the same depth level
-- The `create-turbo` CLI uses GitHub's API to download templates, which has rate limiting (60 requests/hour for unauthenticated, 5000 for authenticated)
-- Private repositories require GitHub authentication
+- When using `degit`, it downloads only the specified directory, making it more efficient than downloading the entire repository
+- Private repositories require authentication configuration with degit
 
 ## Development Commands
 
@@ -90,7 +90,9 @@ node scripts/validate-templates.js
 ### Testing Template Usage
 ```bash
 # Test a specific template
-npx create-turbo@latest test-app --example https://github.com/dionridley/turborepo-templates --example-path templates/[template-name]
+npx degit dionridley/turborepo-templates/templates/[template-name] test-app
+cd test-app
+pnpm install
 ```
 
 ## Important Notes
