@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Card, Button } from '@repo/ui';
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'Components/RepoCard',
   component: Card,
   parameters: {
     layout: 'padded',
